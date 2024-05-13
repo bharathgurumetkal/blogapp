@@ -1,0 +1,62 @@
+### Author registration
+POST http://localhost:4000/author-api/user
+Content-Type: application/json
+
+{
+    "userType":"author",
+    "username":"pavan",
+    "password":"pavan",
+    "email":"pavan@gmail.com"
+}
+
+### Author Login
+POST http://localhost:4000/author-api/login
+Content-Type: application/json
+
+{
+    "userType":"author",
+    "username":"mahesh",
+    "password":"mahesh"
+}
+
+
+### create new article
+POST http://localhost:4000/author-api/article
+Content-Type: application/json
+
+{
+    "articleId":"{{$timestamp}}",
+    "title":"Fundamentals of Javascript",
+    "category":"programming",
+    "content":"JavaScript is a programming language that adds interactivity to your website. This happens in games, in the behavior of responses when buttons are pressed or with data entry on forms; with dynamic styling; with animation, etc. This article helps you get started with JavaScript and furthers your understanding of what is possible.",
+    "dateOfCreation":"{{$datetime iso8601}}",
+    "dateOfModification":"{{$datetime iso8601}}",
+    "username":"mahesh",
+    "comments":[],
+    "status":true
+
+}
+
+### update article by author
+PUT http://localhost:4000/author-api/article
+Content-Type: application/json
+
+{
+    "articleId":"1709470671",
+    "title":"Fundamentals of Javascript",
+    "category":"programming",
+    "content":"JavaScript is a programming language that adds interactivity to your website. ",
+    "dateOfCreation":"2024-03-03T12:57:51.218Z",
+    "dateOfModification":"{{$datetime iso8601}}",
+    "username":"mahesh",
+    "comments":[],
+    "status":true
+
+}
+
+### Delete artcile
+PUT http://localhost:4000/author-api/article/1711266973
+
+### get articles of same author
+GET http://localhost:4000/author-api/articles/mahesh
+

@@ -1,0 +1,23 @@
+#username,#password{
+    background-color: #4a494921;
+}
+
+#username::placeholder,#password::placeholder{
+    color: rgb(52, 53, 53);
+}
+.card-body p{
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+.signin-input-container{
+    position: relative;
+
+}
+.signin-input-container input{
+    padding-left: 40px;
+}
+.signin-input-container .icon{
+    position: absolute;
+    top: 17%;
+    left: 5px;
+}

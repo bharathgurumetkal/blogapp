@@ -1,0 +1,16 @@
+.nav-link{
+    margin-right: 1.5rem;
+}
+.active{
+    border-bottom: 3px solid white!important;
+}
+nav{
+    height: 55px;
+}
+.navbar{
+    background-color: #4a50a4;
+} 
+nav li:hover{
+    font-weight: 600;
+    font-stretch:expanded ;
+}

@@ -1,0 +1,32 @@
+.home_img{
+    position: relative;
+}
+.img_txt{
+    position: absolute;
+    top: 85%;
+    right: 10%;
+    left: 10%;
+    color: rgb(161, 125, 102);   
+}
+.img_txt h2{
+    font-size: 3rem;
+    font-weight: 900;
+}
+.content p{
+    font-size: 1.1rem;
+    color: #4f4d4d;
+    font-weight: 550;
+}
+.content h1{
+    font-weight: 700;
+    font-size: 4rem;
+}
+.content button{
+    font-size: 1.2rem;
+}
+.home-card{
+    box-shadow: 7px 8px 40px  #4f4d4d;
+}
+small{
+    font-size: 3rem;
+}
