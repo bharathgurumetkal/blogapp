@@ -30,3 +30,6 @@
 small{
     font-size: 3rem;
 }
+.delete_btn:hover{
+    color: rgb(8, 96, 121);
+}

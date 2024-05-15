@@ -95,7 +95,7 @@ function Article() {
   }
 
   return (
-    <div>
+    <div className="mt-1">
       {articleEditStatus === false ? (
         <>
           <div className="d-flex justify-content-between mt-2 border-bottom pb-4  ">
@@ -112,28 +112,25 @@ function Article() {
                 </small>
               </span>
             </div>
-            <div>
+            <div className="modify_btns">
               {currentUser.userType === "author" && (
                 <>
                   <button
                     onClick={enableEditState}
-                    className="me-2 edit_btn"
-                    style={{ backgroundColor: "none" }}
+                    className="me-2 edit_btn bg-white shadow-sm rounded border p-2"
                   >
                     <FaRegEdit className="fs-1" />
                   </button>
                   {currentArticle.status === true ? (
                     <button
-                      className="delete_btn"
-                      style={{ backgroundColor: "none" }}
+                      className="delete_btn bg-white shadow-sm rounded border p-2"
                       onClick={deleteArticle}
                     >
                       <MdDeleteOutline className="fs-1" />
                     </button>
                   ) : (
                     <button
-                      className="delete_btn"
-                      style={{ backgroundColor: "none" }}
+                      className="delete_btn bg-white shadow-sm rounded border p-2"
                       onClick={restoreArticle}
                     >
                       <MdRestore className="fs-1" />
@@ -155,9 +152,11 @@ function Article() {
                 Add One to Start Conversion.
               </p>
             ) : (
-              state.comments.map((commentObj, index) => {
+              <div className="p-4 border mt-2 shadow rounded">
+                {state.comments.length===1?(<p className="text-secondary fs-4 fw-medium ">1 comment</p>):(<p className="text-secondary fs-4 fw-medium ">{state.comments.length} comments</p>)}
+              {state.comments.map((commentObj, index) => {
                 return (
-                  <div className="mt-2">
+                  <div className="">
                     <div className="d-flex">
                       <div>
                         <VscAccount className="me-2 fs-2" />
@@ -179,7 +178,7 @@ function Article() {
                     </div>
                   </div>
                 );
-              })
+              })}</div>
             )}
           </div>
 
@@ -192,7 +191,7 @@ function Article() {
             >
               <input
                 type="text"
-                className="mb-4 bg-light  w-100 p-2"
+                className="mb-4 bg-light  w-100 p-2 rounded"
                 placeholder="Write your Comment here...."
                 {...register("comment")}
                 style={{ border: "none", outline: "none" }}

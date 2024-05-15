@@ -1,6 +1,8 @@
 .section a{
     text-decoration: none;
     color: rgb(219, 217, 217);
+    font-size: 1.2rem;
+    font-weight: 550;
 }
 .section h5{
     color:antiquewhite;
@@ -16,5 +18,5 @@
     justify-content: center;
 }
 .section a:hover{
-    text-decoration: underline;
+    color: rgb(159, 162, 162);
 }

@@ -1,4 +1,3 @@
-.edit_btn,.delete_btn{
-    outline: none;
-    border: none;
+.modify_btns button:hover{
+    color: rgb(8, 96, 121);
 }

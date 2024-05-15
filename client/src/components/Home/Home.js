@@ -4,6 +4,8 @@ import "./Home.css";
 import blog_img from "../../assets/blog_img.png";
 import { FaArrowRightLong } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+import { MdRestore } from "react-icons/md";
 
 
 function Home() {
