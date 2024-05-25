@@ -36,7 +36,7 @@ function SignUp() {
     <div className='container'>
       <div className="row justify-content-center mt-5">
         <div className="col-lg-4 col-md-6 col-sm-6">
-          <div className="card shadow-sm" style={{height:'65vh'}}>
+          <div className="card shadow-sm border-1 rounded-3 " style={{height:'65vh'}}>
             <h2 className='text-center p-3'>Signup</h2>
             <div className="card-body">
               {/* display the error message for signup */}
@@ -44,27 +44,31 @@ function SignUp() {
               <form onSubmit={handleSubmit(onSignUpFormSubmit)}>
                 <div className="text-center mb-3">
                   <div className="form-check form-check-inline">
-                    <input type="radio"  id="author" value="author" className="form-check-input" {...register('userType')} />
+                    <input type="radio"  id="author" value="author" className="form-check-input" {...register('userType',{required:true})} />
                     <label htmlFor="author">Author</label>
                   </div>
                   <div className="form-check form-check-inline">
-                    <input type="radio"  id="user" value="user" className="form-check-input" {...register('userType')} />
+                    <input type="radio"  id="user" value="user" className="form-check-input" {...register('userType',{required:true})} />
                     <label htmlFor="user">User</label>
                   </div>
+                  {errors.userType?.type==="required"&&<p className='text-danger'>select userType</p>}
                 </div>
                 <div className='input-container d-flex'>
                 <span className='icon'><FaRegCircleUser className='fs-4' /></span>
-                <input type="text" name="username" id="username" className="form-control mb-3 " placeholder='Username' {...register('username')}/>
+                <input type="text" name="username" id="username" className="form-control " placeholder='Username' {...register('username',{required:true})}/>
                 </div>
-                <div className='input-container d-flex'>
+                {errors.username?.type==="required"&&<p className='text-danger'>username is required</p>}
+                <div className='input-container d-flex mt-3'>
                   <span className='icon'><HiOutlineMail className='fs-4' /></span>
-                  <input type="email" name="email" id="email" className="form-control mb-3" placeholder='Email' {...register('email')}/>
+                  <input type="email" name="email" id="email" className="form-control" placeholder='Email' {...register('email',{required:true})}/>
                 </div>
-                <div className='input-container d-flex'>
+                {errors.email?.type==="required"&&<p className='text-danger'>email is required</p>}
+                <div className='input-container d-flex mt-3'>
                   <span className='icon'><PiLockKeyFill className='fs-4' /></span>
-                  <input type="password" name="password" id="password" className="form-control mb-3" placeholder='Password' {...register('password')}/>
+                  <input type="password" name="password" id="password" className="form-control" placeholder='Password' {...register('password',{required:true})}/>
                 </div>
-                <button type="submit"  className='btn   mx-auto d-block mt-3 mb-3 w-100 text-white' style={{backgroundColor:"#4a50a4"}}>SignUp</button>
+                {errors.password?.type==="required"&&<p className='text-danger'>please enter the required</p>}
+                <button type="submit"  className='btn   mx-auto d-block mt-3 mb-2 w-100 text-white' style={{backgroundColor:"#4a50a4"}}>SignUp</button>
                 <p className='text-center'>Already have an account? <NavLink className="fw-bold text-decoration-none" to="/signin">SignIn</NavLink></p>
               </form>
             </div>

@@ -45,20 +45,20 @@ function Articles() {
                             {err.length!==0&&<p className='text-danger fs-4'>{err}</p>}
                             <form onSubmit={handleSubmit(postNewArticle)}>
                                 <div className='mb-3'>
-                                    <label htmlFor="title">Title</label>
+                                    <label htmlFor="title" className=' fw-medium '>Title</label>
                                     <input type="text"  id="title" className="title1 " {...register("title")} />
                                 </div>
                                 <div className='mb-3'>
-                                    <label htmlFor="category" className="form-label">Select a category</label>
+                                    <label htmlFor="category" className="form-label fw-medium ">Select a category</label>
                                     <select  id="category" className='form-select' {...register("category")}>
                                         <option value="programming">Programming</option>
                                         <option value="machinelearning">MachineLearning</option>
                                         <option value="database">Database</option>
-                                        <option value=""></option>
+                                        
                                     </select>
                                 </div>
                                 <div className='mb-3'>
-                                    <label htmlFor="textarea">Content</label>
+                                    <label htmlFor="textarea" className='fw-medium'>Content</label>
                                     <textarea name="content" id="content"  rows="10" className='form-control'{...register("content")}></textarea>
                                 </div>
                                 <button type='submit' className='btn btn-primary mx-auto d-block'>Publish</button>

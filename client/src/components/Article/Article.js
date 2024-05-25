@@ -14,6 +14,8 @@ import { MdRestore } from "react-icons/md";
 import { FaRegCommentDots } from "react-icons/fa";
 import { LuSend } from "react-icons/lu";
 import { BsEmojiFrown } from "react-icons/bs";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Article() {
   let { state } = useLocation();
@@ -95,7 +97,7 @@ function Article() {
   }
 
   return (
-    <div className="mt-1">
+    <div className="mt-1 container ">
       {articleEditStatus === false ? (
         <>
           <div className="d-flex justify-content-between mt-2 border-bottom pb-4  ">
@@ -134,7 +136,7 @@ function Article() {
                       onClick={restoreArticle}
                     >
                       <MdRestore className="fs-1" />
-                    </button>
+                    </button>                       
                   )}
                 </>
               )}
@@ -212,7 +214,7 @@ function Article() {
               <input
                 type="text"
                 id="title"
-                className="title1 "
+                className=" form-control"
                 {...register("title")}
                 defaultValue={state.title}
               />

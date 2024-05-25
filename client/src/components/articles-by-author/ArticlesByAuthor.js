@@ -37,21 +37,19 @@ function ArticlesByAuthor() {
   
 
   return (
-    <div>
+    <div className='container  mb-3'>
       <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 mt-4 g-5">
         {articlesList.map((article)=>(
           <div className="col" key={article.articleId}>
-            <div className="card h-100">
+            <div className="articles_card card h-100">
               <div className="card-body">
+                <div className='mb-3'>
                 <h3 className="card-title">{article.title}</h3>
-                <span className= 'text-secondary' style={{fontSize:'0.9rem'}}>{article.category}</span>
-                <hr />
+                <span className= ' category fw-semibold rounded-pill py-sm-0 text-white  px-2' style={{fontSize:'0.8rem'}}>{article.category}</span>
+                </div>
                 <p className='text-secondary'>{article.content.substring(0,80)+"....."}</p>
-                <button className='custom-btn btn btn-success' onClick={()=>readArticleByArticleId(article)}>Read More</button>
+                <button className='custom-btn p-2 rounded-3 fw-medium  w-50 mx-auto d-block' onClick={()=>readArticleByArticleId(article)}>Read More</button>
               </div>
-
-
-
               <div className="card-footer">
                 <small>Last updated on {ISOtoUTC(article.dateOfModification)}</small>
               </div>

@@ -1,22 +1,31 @@
 .section a{
     text-decoration: none;
     color: rgb(219, 217, 217);
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     font-weight: 550;
 }
 .section h5{
     color:antiquewhite;
 }
-.section ul{
-    border-right: 2px solid rgb(173, 173, 173);
-}
+
 .copyright{
     width: 100%;
     height: 50px;
-    align-items: center;
-    display: flex;
-    justify-content: center;
 }
 .section a:hover{
     color: rgb(159, 162, 162);
+}
+.social_media ul li a{
+    margin-right: 1.5rem;
+    font-size: 1.5rem;
+}
+@media screen and (max-width:480px){
+    .section .container .row{
+        text-align: center;         
+    }
+    .copyright{
+        flex-direction: column-reverse;
+        height: 100px;
+    }
+
 }

@@ -1,5 +1,5 @@
 .nav-link{
-    margin-right: 1.5rem;
+    padding-right: 1.5rem;
 }
 .active{
     border-bottom: 3px solid white!important;
@@ -14,3 +14,32 @@ nav li:hover{
     font-weight: 600;
     font-stretch:expanded ;
 }
+#checkbox{
+    display: none;
+}
+.check_btn{
+    display: none;
+}
+.navbar h5{
+    cursor: pointer;
+}
+.dropdown button{
+    border: none;
+    outline: none;
+    padding: 0;
+}
+/* @media (max-width:852px){
+    .check_btn{
+        display: block;
+    }
+    .navbar ul{
+        position: fixed;
+        width: 100%;
+        background-color: darkgray;
+        top: 70px;
+        text-align: center;
+    }
+    #checkbox:checked ~ ul{
+        left: 0;
+    }
+} */

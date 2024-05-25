@@ -1,6 +1,11 @@
 .home_img{
     position: relative;
 }
+.info{
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
 .img_txt{
     position: absolute;
     top: 85%;
@@ -23,13 +28,30 @@
 }
 .content button{
     font-size: 1.2rem;
+    width: 30%;
 }
-.home-card{
-    box-shadow: 7px 8px 40px  #4f4d4d;
-}
-small{
-    font-size: 3rem;
-}
-.delete_btn:hover{
-    color: rgb(8, 96, 121);
+
+@media only screen and (max-width:1024px){
+
+    .info{
+        flex-direction: column-reverse;
+    }
+    .content{
+        font-size: 0.8rem;
+    }
+    .content h1{
+        font-size: 3rem;
+        text-align: center;
+        
+    }
+    .content button{
+        width: 300px;
+    }
+    .image img{
+        width: 90%;
+    }
+    .feature{
+        flex-direction: column-reverse;        
+    }
+    
 }

@@ -1,6 +1,7 @@
 import {useEffect, useState} from 'react'
 import { axiosWithToken } from '../../axiosWithToken'
 import { Outlet, useNavigate } from 'react-router-dom'
+import { FaUserCircle } from "react-icons/fa";
 
 function Articles() {
   let [articlesList,setArticlesList]=useState([])
@@ -33,15 +34,16 @@ function Articles() {
   },[])
 
   return (
-    <div>
-      <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 mt-4 g-5">
+    <div className='container'>
+      <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 mt-3 g-5">
         {articlesList.map((article)=>( 
           <div className="col" key={article.articleId}>
             <div className="card h-100">
               <div className="card-body">
-                <h5 className='card-title'>{article.title}</h5>
-                <p>{article.content.substring(0,80)+"....."}</p>
-                <button className="btn btn-success" onClick={()=>readArticleByArticleId(article)}>Read More</button>
+              <div className="d-flex"><p className="fs-5"><FaUserCircle className='fs-3 me-1' />{article.username}</p></div>
+                <h4 className='card-title mb-2'>{article.title}</h4>
+                <p className='text-secondary'>{article.content.substring(0,80)+"....."}</p>
+                <button className="custom-btn p-2 rounded-3 fw-medium  w-50 mx-auto d-block" onClick={()=>readArticleByArticleId(article)}>Read More</button>
               </div>
               <div className="card-footer">
                 <small>Last updated on {ISOtoUTC(article.dateOfModification)}</small>
