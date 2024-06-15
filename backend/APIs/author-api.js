@@ -7,6 +7,33 @@ const jwt=require('jsonwebtoken')
 require('dotenv').config()
 const verifyToken=require('../Middlewares/verifyToken')
 
+const cloudinary=require("cloudinary").v2
+const {CloudinaryStorage}=require("multer-storage-cloudinary")
+const multer=require("multer")
+
+//config cloudinary
+cloudinary.config({
+    cloud_name:"dfwj0qzvz",
+    api_key:"122855417513895",
+    api_secret:"4472z1K6Z1gvL7-5k3fhy7HRSxE",
+    secure:true,
+})
+
+//config cloudinary storage
+const cloudinaryStorage=new CloudinaryStorage({
+    cloudinary:cloudinary,
+    params:async(req,file)=>{
+        return {
+            folder:"blogapp",
+            public_id:file.fieldname+"-"+Date.now(),
+        }
+    }
+})
+ 
+//configure multer
+var upload=multer({storage:cloudinaryStorage})
+
+
 // get collection app
 let authorscollection;
 let articlescollection;
@@ -17,7 +44,7 @@ authorApp.use((req,res,next)=>{
 })
 authorApp.use(exp.json())
 //author registration
-authorApp.post('/author',expressAsyncHandler(async(req,res)=>{
+authorApp.post('/user',expressAsyncHandler(async(req,res)=>{
     const newAuthor=req.body
     //check duplicate author by username
     const dbAuthor=await authorscollection.findOne({username:newAuthor.username})
@@ -67,9 +94,12 @@ authorApp.get('/articles/:username',verifyToken,expressAsyncHandler(async(req,re
 }))
 
 //adding new article by author
-authorApp.post('/article',verifyToken,expressAsyncHandler(async(req,res)=>{
+authorApp.post('/article',verifyToken,upload.single("photo"),expressAsyncHandler(async(req,res)=>{
         //get new article from client
-        const newArticle=req.body
+        const newArticle=JSON.parse(req.body.article)
+        console.log(req.file.path)
+        newArticle.articleImg=req.file.path
+        delete newArticle.photo
         //post to articlescollection
         await articlescollection.insertOne(newArticle)  
         res.send({message:"New article created"})      

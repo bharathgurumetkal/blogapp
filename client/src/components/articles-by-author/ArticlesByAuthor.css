@@ -1,17 +1,16 @@
 .category{
-    background-color: rgb(138, 117, 213);
-
+    background-color: #888888;
 }
 .custom-btn{
-    color: #285fcd;
-    border: 2px solid #425794;
-    background-color: white;
-}
-.custom-btn:hover{
     background:linear-gradient(to right,#6888c9,#425794);
     border: none;
     outline: none;
     color: aliceblue;
+}
+.custom-btn:hover{
+    color: #285fcd;
+    border: 2px solid #425794;
+    background: white;
 }
 .articles_card{
     transition: all 0.3s;

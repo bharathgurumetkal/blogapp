@@ -14,8 +14,10 @@ import { MdRestore } from "react-icons/md";
 import { FaRegCommentDots } from "react-icons/fa";
 import { LuSend } from "react-icons/lu";
 import { BsEmojiFrown } from "react-icons/bs";
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer, Zoom, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import 'bootstrap/dist/css/bootstrap.min.css'
+import 'bootstrap/dist/js/bootstrap.bundle.min.js'
 
 function Article() {
   let { state } = useLocation();
@@ -46,6 +48,14 @@ function Article() {
       navigate(`/author-profile/article/${modifiedArticle.articleId}`, {
         state: res.data.article,
       });
+      toast.success('Article Modified!',{
+        autoClose:2000,
+        hideProgressBar:true,
+        pauseOnHover:false,
+        progress:undefined,
+        theme:"dark",
+        transition:Zoom
+      })
     }
   };
 
@@ -59,6 +69,14 @@ function Article() {
     );
     if (res.data.message === "Article removed") {
       setCurrentArticle({ ...currentArticle, status: res.data.payload });
+      toast.warn('Article Removed',{
+        autoClose:2000,
+        hideProgressBar:true,
+        pauseOnHover:false,
+        progress:undefined,
+        theme:"dark",
+        transition:Zoom
+      })
     }
   };
 
@@ -72,6 +90,14 @@ function Article() {
     );
     if (res.data.message === "Article restored") {
       setCurrentArticle({ ...currentArticle, status: res.data.payload });
+      toast.success('Article restored!',{
+        autoClose:2000,
+        hideProgressBar:true,
+        pauseOnHover:false,
+        progress:undefined,
+        theme:"dark",
+        transition:Zoom,
+      })
     }
   };
 
@@ -103,7 +129,7 @@ function Article() {
           <div className="d-flex justify-content-between mt-2 border-bottom pb-4  ">
             <div>
               <h1>{state.title}</h1>
-              <span>
+              <span className="created_details">
                 <small className=" fw-normal fs-5 me-3  text-info">
                   <LuCalendarClock className="text-primary" />
                   Created on {ISOtoUTC(state.dateOfCreation)}
@@ -123,24 +149,27 @@ function Article() {
                   >
                     <FaRegEdit className="fs-1" />
                   </button>
-                  {currentArticle.status === true ? (
+                  {currentArticle.status === true ? (<>
                     <button
                       className="delete_btn bg-white shadow-sm rounded border p-2"
                       onClick={deleteArticle}
                     >
                       <MdDeleteOutline className="fs-1" />
-                    </button>
-                  ) : (
+                    </button><ToastContainer/></>
+                  ) : (<>
                     <button
                       className="delete_btn bg-white shadow-sm rounded border p-2"
                       onClick={restoreArticle}
                     >
                       <MdRestore className="fs-1" />
-                    </button>                       
+                    </button><ToastContainer/></>                      
                   )}
                 </>
               )}
             </div>
+          </div>
+          <div>
+            <img src={state.articleImg} className="w-75 rounded  mx-auto d-block mt-1" style={{height:"400px"}} alt="" />
           </div>
           <p className="mt-4 mb-4" style={{ whiteSpace: "pre-line" }}>
             {state.content}
@@ -149,13 +178,12 @@ function Article() {
           {/* Read the existing comments */}
           <div className="my-2">
             {state.comments.length === 0 ? (
-              <p className="fs-5 text-secondary fw-normal">
-                No comments yet <BsEmojiFrown className="text-warning fs-5" />{" "}
-                Add One to Start Conversion.
+              <p className="fs-5 text-secondary text-center mt-5 fw-medium">
+                No comments yet <BsEmojiFrown className="text-warning fs-5" />
               </p>
             ) : (
               <div className="p-4 border mt-2 shadow rounded">
-                {state.comments.length===1?(<p className="text-secondary fs-4 fw-medium ">1 comment</p>):(<p className="text-secondary fs-4 fw-medium ">{state.comments.length} comments</p>)}
+                {state.comments.length===1?(<p className="text-secondary fs-5 fw-medium ">1 comment</p>):(<p className="text-secondary fs-4 fw-medium ">{state.comments.length} comments</p>)}
               {state.comments.map((commentObj, index) => {
                 return (
                   <div className="">
@@ -170,11 +198,11 @@ function Article() {
                       </div>
                     </div>
                     <div
-                      className=" p-1 rounded-bottom-3  rounded-end-3 w-75 ms-5 mb-2"
+                      className=" p-1 rounded-bottom-3  rounded-end-3 w-75 ms-5 pb-2"
                       style={{ backgroundColor: "#DEDDDD" }}
                     >
-                      <p className=" text-dark fs-5 ">
-                        <FaRegCommentDots className="fs-4 mr-3 me-1" />
+                      <p className=" text-dark  ">
+                        <FaRegCommentDots className="mr-3 me-1 fw-normal fs-5"/>
                         {commentObj.comment}
                       </p>
                     </div>
@@ -207,7 +235,7 @@ function Article() {
           )}
         </>
       ) : (
-        <div className="border rounded p-2">
+        <div className="border rounded p-2 mb-2">
           <form onSubmit={handleSubmit(saveModifiedArticle)}>
             <div className="mb-3">
               <label htmlFor="title">Title</label>
@@ -235,6 +263,10 @@ function Article() {
                 <option value=""></option>
               </select>
             </div>
+            <div>
+                  <label htmlFor="">Add Photo</label>
+                  <input type="file" className='form-control' defaultValue={state.articleImg}/>
+            </div>
             <div className="mb-3">
               <label htmlFor="textarea">Content</label>
               <textarea
@@ -246,9 +278,12 @@ function Article() {
                 defaultValue={state.content}
               ></textarea>
             </div>
-            <button type="submit" className="btn btn-primary mx-auto d-block">
+            <div>
+            <button type="submit" className="btn btn-success w-25 mx-auto d-block">
               Save
             </button>
+            <ToastContainer/>
+            </div>
           </form>
         </div>
       )}

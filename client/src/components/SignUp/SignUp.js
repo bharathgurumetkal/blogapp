@@ -10,9 +10,11 @@ import './SignUp.css'
 function SignUp() {
   let {register,handleSubmit,formState:{errors}}=useForm()
   let navigate=useNavigate()
-  let [err,setErr]=useState('')
+  let [err,setErr]=useState("")
 
   async function onSignUpFormSubmit(userObj){
+    userObj.activeStatus=true
+    console.log(userObj)
     if(userObj.userType==='user'){  
       let res=await axios.post('http://localhost:4000/user-api/user',userObj)
       if(res.data.message==="User created"){
@@ -20,6 +22,7 @@ function SignUp() {
       }
       else{
         setErr(res.data.message)
+        
       }
     }
     if(userObj.userType==='author'){
@@ -29,6 +32,7 @@ function SignUp() {
       }
       else{
         setErr(res.data.message)
+        console.log(res.data.message)
       }
     }
   }
@@ -39,8 +43,8 @@ function SignUp() {
           <div className="card shadow-sm border-1 rounded-3 " style={{height:'65vh'}}>
             <h2 className='text-center p-3'>Signup</h2>
             <div className="card-body">
-              {/* display the error message for signup */}
-              {err.length!=0&&<p className='text-danger fs-4'>{err}</p>}
+              {/* display the error messa`ge for signup */}
+              {err.length!=0&&<p className='text-danger text-center fs-6'>{err}</p>}
               <form onSubmit={handleSubmit(onSignUpFormSubmit)}>
                 <div className="text-center mb-3">
                   <div className="form-check form-check-inline">

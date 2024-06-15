@@ -3,6 +3,7 @@ import { axiosWithToken } from '../../axiosWithToken'
 import axios from 'axios'
 import { useSelector } from 'react-redux'
 import { Outlet, useNavigate } from 'react-router-dom'
+import './ArticlesByAuthor.css'
 
 
 
@@ -37,17 +38,18 @@ function ArticlesByAuthor() {
   
 
   return (
-    <div className='container  mb-3'>
+    <div className='container  mb-5'>
       <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 mt-4 g-5">
         {articlesList.map((article)=>(
           <div className="col" key={article.articleId}>
-            <div className="articles_card card h-100">
+            <div className="articles_card card h-100 shadow-sm">
               <div className="card-body">
                 <div className='mb-3'>
-                <h3 className="card-title">{article.title}</h3>
-                <span className= ' category fw-semibold rounded-pill py-sm-0 text-white  px-2' style={{fontSize:'0.8rem'}}>{article.category}</span>
+                  <img src={article.articleImg} className='w-100 rounded' alt="" />
+                <h3 className="card-title fs-4 text-capitalize">{article.title}</h3>
+                <span className= 'category fw-bold rounded-top rounded-bottom py-sm-0 py-1 mb-3  px-2 ' style={{fontSize:'0.8rem',color:"#485789",backgroundColor:"#e5ebf4"}}>{article.category}</span>
                 </div>
-                <p className='text-secondary'>{article.content.substring(0,80)+"....."}</p>
+                <p className='text-secondary'>{article.content.substring(0,100)+"....."}</p>
                 <button className='custom-btn p-2 rounded-3 fw-medium  w-50 mx-auto d-block' onClick={()=>readArticleByArticleId(article)}>Read More</button>
               </div>
               <div className="card-footer">

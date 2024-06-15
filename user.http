@@ -3,9 +3,10 @@ Content-Type: application/json
 
 {
     "userType":"user",
-    "username":"krish",
-    "password":"krish",
-    "email":"krish@gmail.com"
+    "username":"keshav",
+    "password":"keshav",
+    "email":"krish@gmail.com",
+    "activeStatus":true
 }
 
 ###

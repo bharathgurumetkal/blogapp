@@ -25,6 +25,17 @@ export const userAuthorLoginThunk=createAsyncThunk('user-author-login',async(use
             }
             return res.data
         }
+        if(userCredObj.userType==='admin'){
+            const res=await axios.post('http://localhost:4000/admin-api/login',userCredObj)
+            if(res.data.message==='login success'){
+                //store token in local/session storage
+                localStorage.setItem('token',res.data.token)
+            }
+            else{
+                return thunkApi.rejectWithValue(res.data.message)
+            }
+            return res.data
+        }
 
     }catch(err){
             return thunkApi.rejectWithValue(err)
@@ -65,7 +76,7 @@ export const userAuthorSlice=createSlice({
         state.currentUser={}
         state.loginUserStatus=false
         state.errMsg=action.payload
-        state.errorOccured=false
+        state.errorOccured=true
     })
 
 })

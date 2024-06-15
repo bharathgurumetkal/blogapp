@@ -1,0 +1,11 @@
+.activeStatus .btn{
+    height: 25px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    margin-left: 200%; 
+}
+.articles_card:hover{
+    transform: scale(1.05);
+}

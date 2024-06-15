@@ -19,10 +19,12 @@ mongoClient.connect(process.env.DB_URL).then(client=>{
     const userscollection=blogdb.collection('userscollection')
     const articlescollection=blogdb.collection('articlescollection')
     const authorscollection=blogdb.collection('authorscollection')
+    const adminscollection=blogdb.collection('adminscollection')
     //share collection with express app
     app.set('userscollection',userscollection)
     app.set('articlescollection',articlescollection)
     app.set('authorscollection',authorscollection)
+    app.set('adminscollection',adminscollection)
     //confirm db connection
     console.log("DB connection success")
 }).catch(err=>console.log("Error in DB",err))

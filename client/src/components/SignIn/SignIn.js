@@ -7,7 +7,6 @@ import { useSelector } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
 import { FaRegCircleUser } from "react-icons/fa6";
 import { PiLockKeyFill } from "react-icons/pi";
-import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import "./SignIn.css";
 function SignIn() {
@@ -20,7 +19,6 @@ function SignIn() {
 
   function onSignInFormSubmit(userCredObj) {
     dispatch(userAuthorLoginThunk(userCredObj));
-    toast.success("Login Successfull!")
   }
   useEffect(() => {
     if (loginUserStatus === true) {
@@ -30,15 +28,21 @@ function SignIn() {
       if (currentUser.userType === "author") {
         navigate("/author-profile");
       }
+      if(currentUser.userType==="admin"){
+        navigate("/admin-profile");
+      }
     }
   }, [loginUserStatus]);
   return (
-    <div className="container ">
-      <div className="row justify-content-center mt-5">
+    <div className=" container ">
+      <div className="row justify-content-center pt-5">
         <div className="col-lg-4 col-md-6 col-sm-6">
           <div className="card shadow-sm border-1 rounded-3  " style={{ height: "65vh" }}>
             <h2 className="text-center m-2 p-2">Signin</h2>
             <div className="card-body">
+              {
+                errorOccured===true&&(<p className="text-danger text-center fs-6">{errMsg}</p>)
+              }
               <form onSubmit={handleSubmit(onSignInFormSubmit)}>
                 <div className="text-center mb-2">
                   <div className="form-check form-check-inline">
@@ -111,7 +115,7 @@ function SignIn() {
                 >
                   Signin
                 </button>
-                <ToastContainer/>
+   
                 </div>
                 <p className="text-center mt-3 lead">
                   Dont have an account?

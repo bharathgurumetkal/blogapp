@@ -12,6 +12,9 @@ import UserProfile from './components/UserProfile/UserProfile';
 import ArticlesByAuthor from './components/articles-by-author/ArticlesByAuthor';
 import Articles from './components/Articles/Articles';
 import Errorpage from './components/Errorpage';
+import AdminProfile from './components/AdminProfile/AdminProfile'
+import ArticlesForAdmin from './components/ArticlesForAdmin/ArticlesForAdmin';
+
 const AddArticle=lazy(()=>import('./components/AddArticle/AddArticle'))
 function App() {
   let router=createBrowserRouter([
@@ -74,6 +77,23 @@ function App() {
             {
               path:'',
               element:<Navigate to='articles'/>
+            }
+          ]
+        },{
+          path:'/admin-profile',
+          element:<AdminProfile/>,
+          children:[
+            {
+              path:'articles-for-admin',
+              element:<ArticlesForAdmin/>
+            },
+            {
+              path:'article/:articleId',
+              element:<Article/>
+            },
+            {
+              path:'',
+              element:<Navigate to='articles-for-admin'/>
             }
           ]
         }

@@ -14,12 +14,6 @@ nav li:hover{
     font-weight: 600;
     font-stretch:expanded ;
 }
-#checkbox{
-    display: none;
-}
-.check_btn{
-    display: none;
-}
 .navbar h5{
     cursor: pointer;
 }
@@ -28,18 +22,6 @@ nav li:hover{
     outline: none;
     padding: 0;
 }
-/* @media (max-width:852px){
-    .check_btn{
-        display: block;
-    }
-    .navbar ul{
-        position: fixed;
-        width: 100%;
-        background-color: darkgray;
-        top: 70px;
-        text-align: center;
-    }
-    #checkbox:checked ~ ul{
-        left: 0;
-    }
-} */
+sup{
+    color: rgb(232, 230, 230);
+}
