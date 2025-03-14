@@ -23,8 +23,35 @@ A **MERN stack** blog platform with **JWT authentication**, **Redux state manage
 ## 📦 Installation & Setup  
 
 ### 1️⃣ Clone the Repository  
-```bash
-git clone https://github.com/yourusername/blog-website.git
-cd blog-website
+
+git clone https://github.com/bharathgurumetkal/blogapp.git
+
+### 2️⃣ Backend Setup
+ ```bash
+cd backend
+npm install  # Install dependencies
+cp .env.example .env  # Configure environment variables
+node server.js #Run the server
+```
+
+### 3️⃣ Frontend Setup
+ ```bash
+cd client
+npm install  # Install dependencies
+npm run build  # Start React app
+```
+### 🌍 Accessing the Application  
+- Once the **backend server** is running, open your browser and go to:  
+  ```bash
+  http://localhost:4000
+
+
+## 🎯 Usage  
+
+- **Users** can **sign up/login**, create, edit, and delete blogs.  
+- **Commenting system** allows users to interact with blog posts.  
+- **Admins** can **block/unblock users**, manage blog content.  
+- **Images** are uploaded and stored securely using **Cloudinary**.  
+- **State management** is handled with **Redux** for a smooth experience.  
 
 
